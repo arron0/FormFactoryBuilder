@@ -1,0 +1,89 @@
+buttonName:
+	type: button
+	caption: "some caption"
+
+submitButtonName:
+	type: button
+	caption: "Submit"
+
+imageButtonName:
+	type: image
+	src: "\image.jpeg"
+	alt: "nice image"
+
+checkBoxName:
+	type: checkBox
+	label: "tick this"
+	value: 25
+
+checkBoxListName:
+	type: checkBoxList
+	label: "tick these"
+	items:
+		key1: value1
+		key2: value1
+	selected:
+		- key1
+		- key2
+
+choiceControlName:
+	type: choice
+	label: "choice label"
+	items:
+		key1: value1
+		key2: value2
+	selected: key2
+
+hiddenFieldName:
+	type: hidden
+	value: "any Value"
+
+multiChoiceControlName:
+	type: multichoice
+	label: "some label"
+	items:
+		key1: value1
+		key2: value2
+	selected:
+		- key1
+		- key2
+
+multiSelectBoxName:
+	type: multiSelect
+	label: "some label"
+	items:
+		key1: value1
+		key2: value2
+	selected:
+		- key1
+		- key2
+
+radioListName:
+	type: radioList
+	label: "some label"
+	items:
+		key1: value1
+		key2: value2
+	selected: key1
+
+selectBoxName:
+	type: select
+	label: "some label"
+	items:
+		key1: value1
+		key2: value2
+	selected: key2
+	prompt: "Select value..."
+
+textAreaName:
+	type: textArea
+	label: "some label"
+	value: "some value of text area"
+	emptyValue: "write something"
+
+textInputName:
+	type: text
+	label: "some label"
+	value: "some value of text area"
+	emptyValue: "write something"
+	maxLenght: 50

@@ -1,0 +1,13 @@
+services:
+	formBuilder.generatorFactory:
+		class: \Arron\FormBuilder\GeneratorFactory
+	formBuilder.arrayBuilder:
+		class: \Arron\FormBuilder\ArrayBuilder(@formBuilder.generatorFactory)
+
+	formBuilder.neonBuilder:
+		class: \Arron\FormBuilder\NeonBuilder(@formBuilder.arrayBuilder, \Nette\Neon\Decoder())
+
+	formBuilder.loader:
+		class: \Arron\FormBuilder\CachedLoader(@formBuilder.builder, @formBuilder.sourceCodeCache)
+
+	formBuilder.builder < formBuilder.neonBuilder:
