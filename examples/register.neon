@@ -1,0 +1,43 @@
+form:
+	class: registerMe
+	type: \Nette\Forms\Form
+	method: post
+	parameters: [param3: default value]
+	groups:
+		Osobní údaje: [name, surname, email]
+		Heslo: [password, password_repeat]
+
+name:
+	type: text
+	label: Name
+
+surname:
+	type: text
+	label: Surname
+
+email:
+	type: text
+	label: Email
+	conditions:
+		-
+			operation: filled
+			rules:
+				- email(msg=Has to be an email.)
+
+password:
+	type: text
+	label: "Heslo, pičo"
+
+container1-password_repeat:
+	type: text
+	label: "Znovu heslo, pičo"
+	conditions:
+		-
+			field: password
+			operation: filled
+			rules:
+				- equal(value=password, msg=This field has to have same value as other field)
+
+submit:
+	type: submit
+	label: Send

@@ -1,23 +1,46 @@
+form:
+	type: \Nette\Forms\Form
+	method: GET
+	class: formClass
+	parameters: [param1, param2, param3: default value]
+	groups:
+		caption1: [buttonName, submitButtonName, imageButtonName, selectBoxName]
+		caption2: [checkBoxName, checkBoxListName]
+
+minmax-min:
+	type: text
+	label: Min
+
+minmax-max:
+	type: text
+	label: Max
+
+minmax-value:
+	type: text
+	label: Value
+	rules:
+		- range(value=[minmax-min, minmax-max], msg=Value has to be between %d and %d.)
+
 buttonName:
 	type: button
-	caption: "some caption"
+	label: some caption
 
 submitButtonName:
-	type: button
-	caption: "Submit"
+	type: submit
+	label: Submit
 
 imageButtonName:
-	type: image
-	src: "\image.jpeg"
-	alt: "nice image"
+	type: imageButton
+	src: /images/success.png
+	alt: nice image
 
 checkBoxName:
-	type: checkBox
+	type: checkbox
 	label: "tick this"
 	value: 25
 
 checkBoxListName:
-	type: checkBoxList
+	type: checkboxList
 	label: "tick these"
 	items:
 		key1: value1
@@ -26,29 +49,11 @@ checkBoxListName:
 		- key1
 		- key2
 
-choiceControlName:
-	type: choice
-	label: "choice label"
-	items:
-		key1: value1
-		key2: value2
-	selected: key2
-
 hiddenFieldName:
 	type: hidden
 	value: "any Value"
 
-multiChoiceControlName:
-	type: multichoice
-	label: "some label"
-	items:
-		key1: value1
-		key2: value2
-	selected:
-		- key1
-		- key2
-
-multiSelectBoxName:
+container1-multiSelectBoxName:
 	type: multiSelect
 	label: "some label"
 	items:
@@ -58,13 +63,25 @@ multiSelectBoxName:
 		- key1
 		- key2
 
-radioListName:
+container1-radioListName:
 	type: radioList
 	label: "some label"
 	items:
 		key1: value1
 		key2: value2
 	selected: key1
+	conditions:
+		-
+			field: container2-textInputName
+			operation: filled
+			conditions:
+				-
+					field: container2-textInputName
+					operation: max_length
+					value: param1
+					rules:
+						- required(msg=This field is required.)
+						- equal(value=container2-textAreaName, msg=This field has to have same value as other field)
 
 selectBoxName:
 	type: select
@@ -72,18 +89,43 @@ selectBoxName:
 	items:
 		key1: value1
 		key2: value2
+		key3: value3
 	selected: key2
 	prompt: "Select value..."
 
-textAreaName:
-	type: textArea
+container3-textInputName:
+	type: text
+	label: "some label"
+	value: param3
+	conditions:
+		-
+			operation: max_length
+			value: 5
+			rules:
+				- pattern(msg=Has to contain number, value='.*[0-9].*')
+		-
+			operation: pattern
+			value: '.*[0-9].*'
+			rules:
+				- max_length(msg=Has to have max length %d., value=10)
+
+container2-textAreaName:
+	type: textarea
 	label: "some label"
 	value: "some value of text area"
 	emptyValue: "write something"
+	rules:
+		- required(msg=You have to fill this.)
 
-textInputName:
+container2-textInputName:
 	type: text
 	label: "some label"
 	value: "some value of text area"
 	emptyValue: "write something"
 	maxLenght: 50
+	rules:
+		- equal(value=container2-textAreaName, msg=This field has to have same value as other field)
+
+password:
+	type: password
+	label: Any password
