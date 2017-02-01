@@ -10,4 +10,5 @@ services:
 	formBuilder.loader:
 		class: \Arron\FormBuilder\CachedLoader(@formBuilder.builder, @formBuilder.sourceCodeCache)
 
-	formBuilder.builder < formBuilder.neonBuilder:
+	formBuilder.builder:
+	        class: \Arron\FormBuilder\NeonBuilder(@formBuilder.arrayBuilder, \Nette\Neon\Decoder())
