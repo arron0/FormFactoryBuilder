@@ -81,7 +81,7 @@ class FormFactoryGenerator extends GeneratorBase
 	{
 		$config = $this->getConfigArray();
 		if(isset($config['form']['type'])) {
-			$method->addDocument("@return {$config['form']['type']}");
+			$method->addComment("@return {$config['form']['type']}");
 		}
 	}
 
