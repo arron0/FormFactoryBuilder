@@ -188,6 +188,15 @@ class FormFieldGenerator extends GeneratorBase
 		if (!is_null($alt = $this->getConfig('alt'))) {
 			$builder->addBody('$?->getControlPrototype()->alt = ?;', array($this->getVariableName(), $alt));
 		}
+		if (!is_null($description = $this->getConfig('description'))) {
+			$builder->addBody('$?->setOption("description", ?);', array($this->getVariableName(), $description));
+		}
+		if (!is_null($attributes = $this->getConfig('attributes'))) {
+			$builder->addBody('$?->getControlPrototype()->addAttributes(?);', array($this->getVariableName(), $attributes));
+		}
+		if (!is_null($validationScope = $this->getConfig('validationScope'))) {
+			$builder->addBody('$?->setValidationScope(?);', array($this->getVariableName(), (bool)$validationScope));
+		}
 	}
 
 	/**
