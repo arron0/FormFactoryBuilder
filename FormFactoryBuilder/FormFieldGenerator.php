@@ -49,6 +49,7 @@ class FormFieldGenerator extends GeneratorBase
 			'imageButton' => '\Nette\Forms\Controls\ImageButton',
 			'submit' => '\Nette\Forms\Controls\SubmitButton',
 			'button' => '\Nette\Forms\Controls\Button',
+			'customClass' => '',
 	);
 
 	/**
@@ -125,6 +126,18 @@ class FormFieldGenerator extends GeneratorBase
 	}
 
 	/**
+	 * @return string
+	 */
+	protected function getClass()
+	{
+		$type = $this->getConfig('class');
+		if (is_null($type)) {
+			throw new \InvalidArgumentException("Field {$this->getFullName()} has to have 'class' defined.");
+		}
+		return $type;
+	}
+
+	/**
 	 * @param Method $builder
 	 * @param string $formPointer
 	 */
@@ -137,6 +150,9 @@ class FormFieldGenerator extends GeneratorBase
 		}
 
 		$inputClassName = self::$registeredWrappers[$type];
+		if ($type === 'customClass'){
+		    $inputClassName = $this->getClass();
+        }
 		$builder->addBody('$? = $?[?] = new ' . $inputClassName . ';', array($this->getVariableName(), $formPointer, $this->getName()));
 		if ($type === 'password') {
 			$builder->addBody("$?->setType('password');", array($this->getVariableName()));
