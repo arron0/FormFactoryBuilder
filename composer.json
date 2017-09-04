@@ -1,5 +1,5 @@
 {
-	"name": "arron/form-factory-builder",
+	"name": "pistej/form-factory-builder",
 	"description": "Neon/array builder of form factories for Nette ",
 	"type": "library",
 	"keywords": [
@@ -27,6 +27,9 @@
 		"classmap": ["FormFactoryBuilder/"]
 	},
 	"authors": [
+		{
+			"name": "Jozef Pištej"
+		},
 		{
 			"name": "Tomáš Lembacher",
 			"email": "tomas.lembacher@gmail.com"
