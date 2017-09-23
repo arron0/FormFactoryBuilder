@@ -85,7 +85,7 @@ class FormFieldGeneratorUnitTest extends TestCase
 	public function testGenerateFieldCreation($name, $config, $expectedResult, $expectedException)
 	{
 		$this->createTestObjectWithParams($name, $config);
-		$builder = new Method();
+		$builder = new Method('foo');
 		$formPointer = 'form';
 
 		if (isset($config['type'])) {
@@ -104,18 +104,18 @@ class FormFieldGeneratorUnitTest extends TestCase
 	public function generateFieldCreationDataProvider()
 	{
 		return array(
-				array('text', array('type' => 'text'), "function() {\n\t\$field07fd0b026fd47eb98cd87f88e5ea281d = \$form['text'] = new \\Nette\\Forms\\Controls\\TextInput;\n}", NULL),
-				array('password', array('type' => 'password'), "function() {\n\t\$fielde6fdbaef571fec7e98a14dcb553cb5cb = \$form['password'] = new \\Nette\\Forms\\Controls\\TextInput;\n\t\$fielde6fdbaef571fec7e98a14dcb553cb5cb->setType('password');\n}", NULL),
-				array('textarea', array('type' => 'textarea'), "function() {\n\t\$fieldc33f9f9e640148a523573a0a0662b5aa = \$form['textarea'] = new \\Nette\\Forms\\Controls\\TextArea;\n}", NULL),
-				array('select', array('type' => 'select'), "function() {\n\t\$field91a748ca57c02db3d5ebf8106bbcb78a = \$form['select'] = new \\Nette\\Forms\\Controls\\SelectBox;\n}", NULL),
-				array('radioList', array('type' => 'radioList'), "function() {\n\t\$field5b90a305b1f78d8a59b51c65337c7e67 = \$form['radioList'] = new \\Nette\\Forms\\Controls\\RadioList;\n}", NULL),
-				array('multiSelect', array('type' => 'multiSelect'), "function() {\n\t\$field6cf402ae36a64f20051fd6bedb4909f2 = \$form['multiSelect'] = new \\Nette\\Forms\\Controls\\MultiSelectBox;\n}", NULL),
-				array('hidden', array('type' => 'hidden'), "function() {\n\t\$field182b55df9fd7f58e7a4893d99a3b739c = \$form['hidden'] = new \\Nette\\Forms\\Controls\\HiddenField;\n}", NULL),
-				array('checkboxList', array('type' => 'checkboxList'), "function() {\n\t\$fieldbc3351cd745df76da7489780b97a899d = \$form['checkboxList'] = new \\Nette\\Forms\\Controls\\CheckboxList;\n}", NULL),
-				array('checkbox', array('type' => 'checkbox'), "function() {\n\t\$fieldec25d158fee0568cfb0ed776c212803c = \$form['checkbox'] = new \\Nette\\Forms\\Controls\\Checkbox;\n}", NULL),
-				array('imageButton', array('type' => 'imageButton'), "function() {\n\t\$fieldd239afd06a853c037da7c66ac0f9c8bf = \$form['imageButton'] = new \\Nette\\Forms\\Controls\\ImageButton;\n}", NULL),
-				array('submit', array('type' => 'submit'), "function() {\n\t\$fieldc03a5925f48fb348342b39e88e844553 = \$form['submit'] = new \\Nette\\Forms\\Controls\\SubmitButton;\n}", NULL),
-				array('button', array('type' => 'button'), "function() {\n\t\$fieldeb6db471a6af85d718f7309eb4114b38 = \$form['button'] = new \\Nette\\Forms\\Controls\\Button;\n}", NULL),
+				array('text', array('type' => 'text'), "function foo()\n{\n\t\$field07fd0b026fd47eb98cd87f88e5ea281d = \$form['text'] = new \\Nette\\Forms\\Controls\\TextInput;\n}", NULL),
+				array('password', array('type' => 'password'), "function foo()\n{\n\t\$fielde6fdbaef571fec7e98a14dcb553cb5cb = \$form['password'] = new \\Nette\\Forms\\Controls\\TextInput;\n\t\$fielde6fdbaef571fec7e98a14dcb553cb5cb->setType('password');\n}", NULL),
+				array('textarea', array('type' => 'textarea'), "function foo()\n{\n\t\$fieldc33f9f9e640148a523573a0a0662b5aa = \$form['textarea'] = new \\Nette\\Forms\\Controls\\TextArea;\n}", NULL),
+				array('select', array('type' => 'select'), "function foo()\n{\n\t\$field91a748ca57c02db3d5ebf8106bbcb78a = \$form['select'] = new \\Nette\\Forms\\Controls\\SelectBox;\n}", NULL),
+				array('radioList', array('type' => 'radioList'), "function foo()\n{\n\t\$field5b90a305b1f78d8a59b51c65337c7e67 = \$form['radioList'] = new \\Nette\\Forms\\Controls\\RadioList;\n}", NULL),
+				array('multiSelect', array('type' => 'multiSelect'), "function foo()\n{\n\t\$field6cf402ae36a64f20051fd6bedb4909f2 = \$form['multiSelect'] = new \\Nette\\Forms\\Controls\\MultiSelectBox;\n}", NULL),
+				array('hidden', array('type' => 'hidden'), "function foo()\n{\n\t\$field182b55df9fd7f58e7a4893d99a3b739c = \$form['hidden'] = new \\Nette\\Forms\\Controls\\HiddenField;\n}", NULL),
+				array('checkboxList', array('type' => 'checkboxList'), "function foo()\n{\n\t\$fieldbc3351cd745df76da7489780b97a899d = \$form['checkboxList'] = new \\Nette\\Forms\\Controls\\CheckboxList;\n}", NULL),
+				array('checkbox', array('type' => 'checkbox'), "function foo()\n{\n\t\$fieldec25d158fee0568cfb0ed776c212803c = \$form['checkbox'] = new \\Nette\\Forms\\Controls\\Checkbox;\n}", NULL),
+				array('imageButton', array('type' => 'imageButton'), "function foo()\n{\n\t\$fieldd239afd06a853c037da7c66ac0f9c8bf = \$form['imageButton'] = new \\Nette\\Forms\\Controls\\ImageButton;\n}", NULL),
+				array('submit', array('type' => 'submit'), "function foo()\n{\n\t\$fieldc03a5925f48fb348342b39e88e844553 = \$form['submit'] = new \\Nette\\Forms\\Controls\\SubmitButton;\n}", NULL),
+				array('button', array('type' => 'button'), "function foo()\n{\n\t\$fieldeb6db471a6af85d718f7309eb4114b38 = \$form['button'] = new \\Nette\\Forms\\Controls\\Button;\n}", NULL),
 				array('noTypeSpecified', array(), NULL, '\InvalidArgumentException'),
 				array('notExistingTypeSpecified', array('type' => 'notExisting'), NULL, '\InvalidArgumentException'),
 
@@ -135,10 +135,10 @@ class FormFieldGeneratorUnitTest extends TestCase
 				'src' => 'http://src',
 				'alt' => 'alternative text',
 		);
-		$builder = new Method();
-		$expectedResult = "function() {
+		$builder = new Method('foo');
+		$expectedResult = "function foo()\n{
 	\$field96cc0477ff30c5c3b7e1b009ee251bc4->caption = 'someLabel';
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setItems(array('items'));
+	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setItems(['items']);
 	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setDefaultValue('key01');
 	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setPrompt('Some promt text');
 	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setDefaultValue(42);
@@ -176,7 +176,7 @@ class FormFieldGeneratorUnitTest extends TestCase
 		);
 		$conditionGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FieldConditionGenerator', 'conditionGenerator');
 		$ruleGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FieldRuleGenerator', 'ruleGenerator');
-		$builder = new Method();
+		$builder = new Method('foo');
 
 		$this->createTestObjectWithParams($name, $config);
 		$namingContainerMock = $this->namingContainerMock;

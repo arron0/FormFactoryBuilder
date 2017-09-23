@@ -61,8 +61,9 @@ class FieldConditionGeneratorUnitTest extends TestCase
 
 		$ruleGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FieldRuleGenerator', 'ruleGenerator');
 
-		$builder = new Method();
-		$expectedResult = 'function() {
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
 	$condition5d4ab6f09d469ece6e09b030876a0aa5 = $baseConditionVariable->addCondition(\Nette\Forms\Form::YETANOTHEROPERATION, \'.*[0-9].*\');
 	$condition5d4ab6f09d469ece6e09b030876a0aa5->endCondition();
 }';
@@ -102,9 +103,10 @@ class FieldConditionGeneratorUnitTest extends TestCase
 
 		$ruleGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FieldRuleGenerator', 'ruleGenerator');
 
-		$builder = new Method();
-		$expectedResult = 'function() {
-	$condition8aa6b989b6485ec3b5b2e8aa51ba4e23 = $baseConditionVariable->addConditionOn($someFieldVariable, \Nette\Forms\Form::SOMEOPERATION, NULL);
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
+	$condition8aa6b989b6485ec3b5b2e8aa51ba4e23 = $baseConditionVariable->addConditionOn($someFieldVariable, \Nette\Forms\Form::SOMEOPERATION, null);
 	$condition8aa6b989b6485ec3b5b2e8aa51ba4e23->endCondition();
 }';
 
@@ -141,9 +143,10 @@ class FieldConditionGeneratorUnitTest extends TestCase
 
 		$conditionGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FieldConditionGenerator', 'conditionGenerator');
 
-		$builder = new Method();
-		$expectedResult = 'function() {
-	$conditionfc3b9f82e43606f431b35bd3930e76af = $baseConditionVariable->addConditionOn($someFieldVariable, \Nette\Forms\Form::SOMEOPERATION, NULL);
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
+	$conditionfc3b9f82e43606f431b35bd3930e76af = $baseConditionVariable->addConditionOn($someFieldVariable, \Nette\Forms\Form::SOMEOPERATION, null);
 	$conditionfc3b9f82e43606f431b35bd3930e76af->endCondition();
 }';
 
@@ -179,7 +182,7 @@ class FieldConditionGeneratorUnitTest extends TestCase
 				),
 		);
 
-		$builder = new Method();
+		$builder = new Method('foo');
 		$this->createTestObjectWithParams($config);
 
 		$this->setExpectedException('\LogicException');

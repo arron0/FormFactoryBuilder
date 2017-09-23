@@ -49,8 +49,9 @@ class FieldRuleGeneratorUnitTest extends TestCase
 				'msg' => 'someMsg',
 				'value' => 5,
 		);
-		$builder = new Method();
-		$expectedResult = 'function() {
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
 	$ruleBaseVariable->addRule(\Nette\Forms\Form::MAX_LENGTH, \'someMsg\', 5);
 }';
 
@@ -72,8 +73,9 @@ class FieldRuleGeneratorUnitTest extends TestCase
 				'msg' => 'someMsg',
 				'value' => 'parameter01',
 		);
-		$builder = new Method();
-		$expectedResult = 'function() {
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
 	$ruleBaseVariable->addRule(\Nette\Forms\Form::MAX_LENGTH, \'someMsg\', $param01);
 }';
 
@@ -97,8 +99,9 @@ class FieldRuleGeneratorUnitTest extends TestCase
 				'msg' => 'someMsg',
 				'value' => 'field01',
 		);
-		$builder = new Method();
-		$expectedResult = 'function() {
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
 	$ruleBaseVariable->addRule(\Nette\Forms\Form::MAX_LENGTH, \'someMsg\', $fieldVariable01);
 }';
 
@@ -122,8 +125,9 @@ class FieldRuleGeneratorUnitTest extends TestCase
 				'msg' => 'someMsg',
 				'value' => array(5, 'maxValue'),
 		);
-		$builder = new Method();
-		$expectedResult = 'function() {
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
 	$ruleBaseVariable->addRule(\Nette\Forms\Form::RANGE, \'someMsg\', array(5, $maxValue));
 }';
 
@@ -149,8 +153,9 @@ class FieldRuleGeneratorUnitTest extends TestCase
 				'msg' => 'someMsg',
 				'value' => array(5, 'maxValue'),
 		);
-		$builder = new Method();
-		$expectedResult = 'function() {
+		$builder = new Method('foo');
+		$expectedResult = 'function foo()
+{
 	$ruleBaseVariable->addRule(\Nette\Forms\Form::RANGE, \'someMsg\', array(5, $maxValueField));
 }';
 

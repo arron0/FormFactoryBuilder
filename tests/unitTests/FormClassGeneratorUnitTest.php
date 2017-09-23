@@ -65,7 +65,8 @@ class FormClassGeneratorUnitTest extends TestCase
 				)
 		);
 
-		$expectedResult = 'function() {
+		$expectedResult = 'function foo()
+{
 	$formb3604ff8a9db2e7798eb7872ae8d2890 = new \Nette\Forms\Form();
 	$formb3604ff8a9db2e7798eb7872ae8d2890->setMethod($param1);
 	$formb3604ff8a9db2e7798eb7872ae8d2890->getElementPrototype()->setClass(\'registerMe\');
@@ -82,7 +83,7 @@ class FormClassGeneratorUnitTest extends TestCase
 		$namingContainerMock = $this->getMockedClass('\Arron\FormBuilder\VariableNamingContainer', 'namingContainer');
 		$fieldOneGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FormFieldGenerator', 'fieldOneGenerator');
 		$fieldTwoGeneratorMock = $this->getMockedClass('\Arron\FormBuilder\FormFieldGenerator', 'fieldTwoGenerator');
-		$builder = new Method();
+		$builder = new Method('foo');
 
 		$this->expectDependencyCall('fieldOneGenerator', 'getContainer', array(), NULL);
 		$this->expectDependencyCall('fieldTwoGenerator', 'getContainer', array(), 'container1');
@@ -140,7 +141,7 @@ class FormClassGeneratorUnitTest extends TestCase
 		);
 
 		$this->createTestObjectWithParams($config);
-		$builder = new Method();
+		$builder = new Method('foo');
 
 		$this->setExpectedException('\InvalidArgumentException');
 
