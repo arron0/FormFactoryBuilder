@@ -88,8 +88,12 @@ class FormFieldGeneratorUnitTest extends TestCase
 		$builder = new Method('foo');
 		$formPointer = 'form';
 
-		if (isset($config['type'])) {
+		/*if (isset($config['type'])) {
 			$this->expectDependencyCall('namingContainer', 'isParameter', array($config['type']), FALSE);
+		}*/
+
+		foreach ($config as $configKey => $configValue) {
+			$this->expectDependencyCall('namingContainer', 'isParameter', array($config[$configKey]), FALSE);
 		}
 
 		if (!is_null($expectedException)) {
@@ -116,6 +120,7 @@ class FormFieldGeneratorUnitTest extends TestCase
 				array('imageButton', array('type' => 'imageButton'), "function foo()\n{\n\t\$fieldd239afd06a853c037da7c66ac0f9c8bf = \$form['imageButton'] = new \\Nette\\Forms\\Controls\\ImageButton;\n}", NULL),
 				array('submit', array('type' => 'submit'), "function foo()\n{\n\t\$fieldc03a5925f48fb348342b39e88e844553 = \$form['submit'] = new \\Nette\\Forms\\Controls\\SubmitButton;\n}", NULL),
 				array('button', array('type' => 'button'), "function foo()\n{\n\t\$fieldeb6db471a6af85d718f7309eb4114b38 = \$form['button'] = new \\Nette\\Forms\\Controls\\Button;\n}", NULL),
+				array('customClassControl', array('type' => 'customClass', 'class' => 'CustomClassControl'), "function foo()\n{\n\t\$fieldfa6fe6c7e4328a06d595536a87e23127 = \$form['customClassControl'] = new CustomClassControl;\n}", NULL),
 				array('noTypeSpecified', array(), NULL, '\InvalidArgumentException'),
 				array('notExistingTypeSpecified', array('type' => 'notExisting'), NULL, '\InvalidArgumentException'),
 

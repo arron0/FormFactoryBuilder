@@ -128,13 +128,13 @@ class FormFieldGenerator extends GeneratorBase
 	/**
 	 * @return string
 	 */
-	protected function getClass()
+	protected function getCustomControlClassName()
 	{
-		$type = $this->getConfig('class');
-		if (is_null($type)) {
-			throw new \InvalidArgumentException("Field {$this->getFullName()} has to have 'class' defined.");
+		$className = $this->getConfig('class');
+		if (is_null($className)) {
+			throw new \InvalidArgumentException("Field {$this->getFullName()} has 'customClass' type but no 'class' attribute defined.");
 		}
-		return $type;
+		return $className;
 	}
 
 	/**
@@ -151,7 +151,7 @@ class FormFieldGenerator extends GeneratorBase
 
 		$inputClassName = self::$registeredWrappers[$type];
 		if ($type === 'customClass'){
-		    $inputClassName = $this->getClass();
+		    $inputClassName = $this->getCustomControlClassName();
         }
 		$builder->addBody('$? = $?[?] = new ' . $inputClassName . ';', array($this->getVariableName(), $formPointer, $this->getName()));
 		if ($type === 'password') {
