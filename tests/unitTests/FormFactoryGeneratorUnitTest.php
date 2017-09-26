@@ -115,7 +115,7 @@ class FormFactoryGeneratorUnitTest extends TestCase
 	{
 		$this->createTestObjectWithParams('factoryClass', array());
 
-		$this->setExpectedException('\LogicException');
+		$this->expectException('\LogicException');
 
 		$this->getTestObject()->generate();
 	}

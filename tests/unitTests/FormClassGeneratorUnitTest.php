@@ -143,7 +143,7 @@ class FormClassGeneratorUnitTest extends TestCase
 		$this->createTestObjectWithParams($config);
 		$builder = new Method('foo');
 
-		$this->setExpectedException('\InvalidArgumentException');
+		$this->expectException('\InvalidArgumentException');
 
 		$this->getTestObject()->generate($builder);
 	}

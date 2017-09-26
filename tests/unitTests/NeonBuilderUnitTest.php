@@ -139,7 +139,7 @@ class NeonBuilderUnitTest extends TestCase
 		$this->expectDependencyCall('global', 'realpath', array($configFile), $configFile);
 		$this->expectDependencyCall('global', 'file_exists', array($configFile), FALSE);
 
-		$this->setExpectedException('\InvalidArgumentException');
+		$this->expectException('\InvalidArgumentException');
 
 		$this->getTestObject()->create($className, $configFile);
 	}

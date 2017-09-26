@@ -185,7 +185,7 @@ class FieldConditionGeneratorUnitTest extends TestCase
 		$builder = new Method('foo');
 		$this->createTestObjectWithParams($config);
 
-		$this->setExpectedException('\LogicException');
+		$this->expectException('\LogicException');
 
 		$this->getTestObject()->generate($builder, 'baseConditionVariable');
 	}

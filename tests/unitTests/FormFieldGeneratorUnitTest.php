@@ -93,7 +93,7 @@ class FormFieldGeneratorUnitTest extends TestCase
 		}
 
 		if (!is_null($expectedException)) {
-			$this->setExpectedException($expectedException);
+			$this->expectException($expectedException);
 		}
 
 		$this->getTestObject()->generateFieldCreation($builder, $formPointer);

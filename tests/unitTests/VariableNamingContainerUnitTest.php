@@ -69,7 +69,7 @@ class VariableNamingContainerUnitTest extends TestCase
 
 	public function testGetContainerVariableNotExisting()
 	{
-		$this->setExpectedException('\InvalidArgumentException');
+		$this->expectException('\InvalidArgumentException');
 
 		$this->getTestObject()->getContainerVariable('notExistingName');
 	}
@@ -113,7 +113,7 @@ class VariableNamingContainerUnitTest extends TestCase
 
 	public function testGetFieldVariableNotExisting()
 	{
-		$this->setExpectedException('\InvalidArgumentException');
+		$this->expectException('\InvalidArgumentException');
 
 		$this->getTestObject()->getFieldVariable('notExistingName');
 	}
@@ -173,7 +173,7 @@ class VariableNamingContainerUnitTest extends TestCase
 
 	public function testGetParameterVariableNotExisting()
 	{
-		$this->setExpectedException('\InvalidArgumentException');
+		$this->expectException('\InvalidArgumentException');
 
 		$this->getTestObject()->getParameterVariable('notExistingName');
 	}

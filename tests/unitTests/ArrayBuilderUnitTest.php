@@ -53,7 +53,7 @@ class ArrayBuilderUnitTest extends TestCase
 		$className = 'anyName';
 		$config = 'some config string';
 
-		$this->setExpectedException('\InvalidArgumentException');
+		$this->expectException('\InvalidArgumentException');
 
 		$this->getTestObject()->create($className, $config);
 	}
