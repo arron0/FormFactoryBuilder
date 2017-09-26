@@ -134,17 +134,26 @@ class FormFieldGeneratorUnitTest extends TestCase
 				'emptyValue' => 'Add value',
 				'src' => 'http://src',
 				'alt' => 'alternative text',
+				'description' => 'some description text',
+				'attributes' => [
+						'attr1' => 'value1',
+						'attr2' => 'value2',
+						],
+				'validationScope' => false,
 		);
 		$builder = new Method('foo');
 		$expectedResult = "function foo()\n{
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->caption = 'someLabel';
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setItems(['items']);
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setDefaultValue('key01');
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setPrompt('Some promt text');
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setDefaultValue(42);
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->setEmptyValue('Add value');
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->getControlPrototype()->src = 'http://src';
-	\$field96cc0477ff30c5c3b7e1b009ee251bc4->getControlPrototype()->alt = 'alternative text';
+	\$field768879750d6dff186474d4a9041c385d->caption = 'someLabel';
+	\$field768879750d6dff186474d4a9041c385d->setItems(['items']);
+	\$field768879750d6dff186474d4a9041c385d->setDefaultValue('key01');
+	\$field768879750d6dff186474d4a9041c385d->setPrompt('Some promt text');
+	\$field768879750d6dff186474d4a9041c385d->setDefaultValue(42);
+	\$field768879750d6dff186474d4a9041c385d->setEmptyValue('Add value');
+	\$field768879750d6dff186474d4a9041c385d->getControlPrototype()->src = 'http://src';
+	\$field768879750d6dff186474d4a9041c385d->getControlPrototype()->alt = 'alternative text';
+	\$field768879750d6dff186474d4a9041c385d->setOption(\"description\", 'some description text');
+	\$field768879750d6dff186474d4a9041c385d->getControlPrototype()->addAttributes(['attr1' => 'value1', 'attr2' => 'value2']);
+	\$field768879750d6dff186474d4a9041c385d->setValidationScope(false);
 }";
 
 		$this->createTestObjectWithParams($name, $config);
@@ -155,6 +164,7 @@ class FormFieldGeneratorUnitTest extends TestCase
 		$this->expectDependencyCall('namingContainer', 'isParameter', array('Add value'), FALSE);
 		$this->expectDependencyCall('namingContainer', 'isParameter', array('http://src'), FALSE);
 		$this->expectDependencyCall('namingContainer', 'isParameter', array('alternative text'), FALSE);
+		$this->expectDependencyCall('namingContainer', 'isParameter', array('some description text'), FALSE);
 
 		$this->getTestObject()->generateFieldInitialization($builder);
 
