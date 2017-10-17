@@ -49,6 +49,7 @@ class FormFieldGenerator extends GeneratorBase
 			'imageButton' => '\Nette\Forms\Controls\ImageButton',
 			'submit' => '\Nette\Forms\Controls\SubmitButton',
 			'button' => '\Nette\Forms\Controls\Button',
+			'upload' => '\Nette\Forms\Controls\UploadControl',
 			'customClass' => '',
 	);
 
